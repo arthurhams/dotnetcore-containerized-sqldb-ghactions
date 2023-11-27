@@ -36,8 +36,7 @@ jobs:
     - name: Checkout Source Code
       uses: actions/checkout@v2
     
-    # This example uses federated identity (OIDC) for authentication
-    - name: Login for az cli commands 
+    - name: Azure Login with Federated Identity
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
