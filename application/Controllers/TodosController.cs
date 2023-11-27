@@ -48,6 +48,13 @@ namespace DotNetCoreSqlDb.Controllers
             return View();
         }
 
+
+        // GET: Todos/SortedPage
+        public async Task<IActionResult> SortedPage()
+        {
+            return View(await _context.Todo.OrderByDescending(x => x.Description).ToListAsync());
+        }
+
         // POST: Todos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -57,6 +64,8 @@ namespace DotNetCoreSqlDb.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (todo.CreatedDate == null)
+                { todo.CreatedDate = DateTime.Now; }
                 _context.Add(todo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
