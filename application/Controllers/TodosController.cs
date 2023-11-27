@@ -48,10 +48,19 @@ namespace DotNetCoreSqlDb.Controllers
             return View();
         }
 
+        public void RefreshAll()
+        {
+            var entitiesList = _context.ChangeTracker.Entries().ToList();
+            foreach (var entity in entitiesList)
+            {
+                entity.Reload();
+            }
+        }
 
         // GET: Todos/SortedPage
         public async Task<IActionResult> SortedPage()
         {
+            RefreshAll();
             return View(await _context.Todo.OrderByDescending(x => x.Description).ToListAsync());
         }
 
