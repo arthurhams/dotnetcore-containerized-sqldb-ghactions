@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:6.0 as base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 as base
 WORKDIR /app
 EXPOSE 5000
 ENV ASPNETCORE_URLS="http://*:5000"
