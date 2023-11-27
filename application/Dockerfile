@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 as base
+FROM mcr.microsoft.com/dotnet/core/aspnet:6.0 as base
 WORKDIR /app
 EXPOSE 5000
 ENV ASPNETCORE_URLS="http://*:5000"
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as build
+FROM mcr.microsoft.com/dotnet/core/sdk:6.0 as build
 WORKDIR /src
 COPY ["DotNetCoreSqlDb.csproj", "./"]
 RUN dotnet restore "./DotNetCoreSqlDb.csproj"
